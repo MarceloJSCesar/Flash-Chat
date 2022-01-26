@@ -9,8 +9,8 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen>
     with SingleTickerProviderStateMixin {
-  AnimationController? _animationController;
-  Animation? _animation;
+  var _animationController;
+  Animation<double>? _animation;
 
   @override
   void initState() {
@@ -19,9 +19,10 @@ class _LoginScreenState extends State<LoginScreen>
       duration: const Duration(seconds: 1),
       vsync: this,
     );
-    _animation = ColorTween(begin: Colors.blueGrey, end: Colors.white)
-        .animate(_animation!.value);
-    _animationController!.forward();
+    _animation = CurvedAnimation(
+      parent: _animationController,
+      curve: Curves.decelerate,
+    );
   }
 
   @override
@@ -33,7 +34,7 @@ class _LoginScreenState extends State<LoginScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: _animation!.value,
+      backgroundColor: Colors.greenAccent.withOpacity(_animation!.value),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 24.0),
         child: Column(
