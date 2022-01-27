@@ -9,7 +9,26 @@ class WelcomeScreen extends StatefulWidget {
   _WelcomeScreenState createState() => _WelcomeScreenState();
 }
 
-class _WelcomeScreenState extends State<WelcomeScreen> {
+class _WelcomeScreenState extends State<WelcomeScreen>
+    with SingleTickerProviderStateMixin {
+  AnimationController? _animationController;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _animationController = AnimationController(
+      vsync: this,
+      upperBound: 100,
+      duration: const Duration(seconds: 1),
+    );
+    _animationController!.forward();
+    _animationController!.addListener(() {
+      setState(() {});
+      print('value: ${_animationController!.value}');
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,8 +44,8 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                 Hero(
                   tag: 'logo',
                   child: SizedBox(
-                    child: Image.asset('images/logo.png'),
-                    height: 60.0,
+                    child: Image.asset('assets/logo.png'),
+                    height: _animationController!.value,
                   ),
                 ),
                 const Text(
