@@ -54,8 +54,10 @@ class _WelcomeScreenState extends State<WelcomeScreen>
             const SizedBox(
               height: 48.0,
             ),
-            const CustomButton(),
-            const CustomButton(isLoginButton: false),
+            CustomButton(
+              onPressed: () {},
+            ),
+            CustomButton(isLoginButton: false, onPressed: () {}),
           ],
         ),
       ),
