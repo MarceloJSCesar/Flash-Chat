@@ -22,9 +22,10 @@ class _WelcomeScreenState extends State<WelcomeScreen>
       duration: const Duration(seconds: 2),
     );
 
-    _animation = CurvedAnimation(
-        parent: _animationController as AnimationController,
-        curve: Curves.decelerate);
+    _animation = ColorTween(
+      begin: Colors.blueGrey,
+      end: Colors.white,
+    ).animate(_animationController as AnimationController);
 
     _animationController!.forward();
     _animationController!.addListener(() {
@@ -35,7 +36,7 @@ class _WelcomeScreenState extends State<WelcomeScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: _animation!.value,
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 24.0),
         child: Column(
@@ -48,13 +49,13 @@ class _WelcomeScreenState extends State<WelcomeScreen>
                   tag: 'logo',
                   child: SizedBox(
                     child: Image.asset('assets/logo.png'),
-                    height: _animation!.value * 80,
+                    height: 60.0,
                   ),
                 ),
-                Text(
+                const Text(
                   'Flash Chat',
                   style: TextStyle(
-                    fontSize: _animation!.value * 20,
+                    fontSize: 45.0,
                     fontWeight: FontWeight.w900,
                   ),
                 ),
