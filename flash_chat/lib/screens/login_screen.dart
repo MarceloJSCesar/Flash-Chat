@@ -1,3 +1,4 @@
+import 'package:flash_chat/widgets/logo_image.dart';
 import 'package:flutter/material.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -41,13 +42,7 @@ class _LoginScreenState extends State<LoginScreen>
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            Hero(
-              tag: 'logo',
-              child: SizedBox(
-                height: _animation!.value * 200,
-                child: Image.asset('assets/logo.png'),
-              ),
-            ),
+            LogoImage(height: _animation!.value * 200),
             const SizedBox(
               height: 48.0,
             ),
