@@ -4,6 +4,8 @@ import 'package:flash_chat/widgets/custom_button.dart';
 import 'package:flash_chat/widgets/logo_image.dart';
 import 'package:flutter/material.dart';
 
+import 'login_screen.dart';
+
 class WelcomeScreen extends StatefulWidget {
   static const String welcomeScreenId = 'welcome_screen';
   const WelcomeScreen({Key? key}) : super(key: key);
@@ -55,7 +57,8 @@ class _WelcomeScreenState extends State<WelcomeScreen>
               height: 48.0,
             ),
             CustomButton(
-              onPressed: () {},
+              onPressed: () => Navigator.of(context)
+                  .pushReplacementNamed(LoginScreen.loginScreenId),
             ),
             CustomButton(isLoginButton: false, onPressed: () {}),
           ],

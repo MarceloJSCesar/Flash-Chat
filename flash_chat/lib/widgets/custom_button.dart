@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../screens/login_screen.dart';
-
 class CustomButton extends StatelessWidget {
-  final Function? onPressed;
+  final dynamic onPressed;
   final bool? isLoginButton;
   const CustomButton({
     Key? key,
@@ -21,10 +19,7 @@ class CustomButton extends StatelessWidget {
             isLoginButton == true ? Colors.lightBlueAccent : Colors.blueAccent,
         borderRadius: BorderRadius.circular(30.0),
         child: MaterialButton(
-          onPressed: () =>
-              onPressed ??
-              Navigator.of(context)
-                  .pushReplacementNamed(LoginScreen.loginScreenId),
+          onPressed: onPressed,
           minWidth: 200.0,
           height: 42.0,
           child: Text(
