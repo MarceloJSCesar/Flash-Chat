@@ -16,7 +16,6 @@ class _WelcomeScreenState extends State<WelcomeScreen>
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     _animationController = AnimationController(
       vsync: this,
@@ -30,7 +29,6 @@ class _WelcomeScreenState extends State<WelcomeScreen>
     _animationController!.forward();
     _animationController!.addListener(() {
       setState(() {});
-      print('value: ${_animation!.value}');
     });
   }
 

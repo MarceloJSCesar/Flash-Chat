@@ -9,7 +9,7 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen>
     with SingleTickerProviderStateMixin {
-  var _animationController;
+  AnimationController? _animationController;
   Animation<double>? _animation;
 
   @override
@@ -20,7 +20,7 @@ class _LoginScreenState extends State<LoginScreen>
       vsync: this,
     );
     _animation = CurvedAnimation(
-      parent: _animationController,
+      parent: _animationController as AnimationController,
       curve: Curves.decelerate,
     );
   }
@@ -34,7 +34,7 @@ class _LoginScreenState extends State<LoginScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.greenAccent.withOpacity(_animation!.value),
+      backgroundColor: Colors.white.withOpacity(_animation!.value),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 24.0),
         child: Column(
@@ -44,7 +44,7 @@ class _LoginScreenState extends State<LoginScreen>
             Hero(
               tag: 'logo',
               child: SizedBox(
-                height: 200.0,
+                height: _animation!.value * 200,
                 child: Image.asset('assets/logo.png'),
               ),
             ),
