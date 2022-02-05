@@ -1,7 +1,8 @@
-import 'package:flash_chat/screens/login_screen.dart';
-import 'package:flash_chat/screens/registration_screen.dart';
+import 'package:flash_chat/config/app_textstyles.dart';
 import 'package:flutter/material.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
+import '../screens/login_screen.dart';
+import '../screens/registration_screen.dart';
 
 class WelcomeScreen extends StatefulWidget {
   static const String welcomeScreenId = 'welcome_screen';
@@ -11,7 +12,7 @@ class WelcomeScreen extends StatefulWidget {
 }
 
 class _WelcomeScreenState extends State<WelcomeScreen>
-    with SingleTickerProviderStateMixin {
+    with SingleTickerProviderStateMixin, AppTextStyles {
   AnimationController? _animationController;
   Animation? _animation;
 
@@ -54,19 +55,16 @@ class _WelcomeScreenState extends State<WelcomeScreen>
                   ),
                 ),
                 AnimatedTextKit(
-                    totalRepeatCount: 4,
-                    pause: const Duration(milliseconds: 50),
-                    animatedTexts: [
-                      TypewriterAnimatedText(
-                        'Flash Chat',
-                        textStyle: const TextStyle(
-                          fontSize: 45.0,
-                          color: Colors.black,
-                          fontWeight: FontWeight.w900,
-                        ),
-                        speed: const Duration(milliseconds: 250),
-                      ),
-                    ]),
+                  totalRepeatCount: 4,
+                  pause: const Duration(milliseconds: 50),
+                  animatedTexts: [
+                    TypewriterAnimatedText(
+                      'Flash Chat',
+                      textStyle: AppTextStyles.welcomeScreenTitleTextStyle,
+                      speed: const Duration(milliseconds: 250),
+                    ),
+                  ],
+                ),
               ],
             ),
             const SizedBox(
