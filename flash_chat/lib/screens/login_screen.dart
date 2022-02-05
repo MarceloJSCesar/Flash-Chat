@@ -1,3 +1,4 @@
+import 'package:flash_chat/widgets/custom_button.dart';
 import 'package:flash_chat/widgets/logo_image.dart';
 import 'package:flutter/material.dart';
 
@@ -95,27 +96,8 @@ class _LoginScreenState extends State<LoginScreen>
                 ),
               ),
             ),
-            const SizedBox(
-              height: 24.0,
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 16.0),
-              child: Material(
-                color: Colors.lightBlueAccent,
-                borderRadius: const BorderRadius.all(Radius.circular(30.0)),
-                elevation: 5.0,
-                child: MaterialButton(
-                  onPressed: () {
-                    //Implement login functionality.
-                  },
-                  minWidth: 200.0,
-                  height: 42.0,
-                  child: const Text(
-                    'Log In',
-                  ),
-                ),
-              ),
-            ),
+            const SizedBox(height: 24.0),
+            const CustomButton(),
           ],
         ),
       ),
