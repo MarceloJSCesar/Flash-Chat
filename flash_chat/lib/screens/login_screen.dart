@@ -59,9 +59,7 @@ class _LoginScreenState extends State<LoginScreen>
             CustomTextField(
               hint: 'Enter your email',
               onChanged: (value) {
-                setState(() {
-                  _email = value;
-                });
+                _email = value;
               },
             ),
             const SizedBox(
@@ -69,9 +67,7 @@ class _LoginScreenState extends State<LoginScreen>
             ),
             CustomTextField(
               onChanged: (value) {
-                setState(() {
-                  _password = value;
-                });
+                _password = value;
               },
             ),
             const SizedBox(height: 24.0),

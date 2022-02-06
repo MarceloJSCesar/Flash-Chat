@@ -12,7 +12,7 @@ class CustomTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextField(
-      onChanged: (value) => onChanged(value),
+      onChanged: (value) => onChanged,
       decoration: InputDecoration(
         hintText: hint ?? 'Enter your password.',
         contentPadding:
