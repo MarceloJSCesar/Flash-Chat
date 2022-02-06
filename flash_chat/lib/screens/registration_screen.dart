@@ -1,3 +1,4 @@
+import 'package:flash_chat/services/auth_services.dart';
 import 'package:flash_chat/widgets/custom_button.dart';
 import 'package:flash_chat/widgets/logo_image.dart';
 import 'package:flutter/material.dart';
@@ -12,7 +13,7 @@ class RegistrationScreen extends StatefulWidget {
 }
 
 class _RegistrationScreenState extends State<RegistrationScreen>
-    with SingleTickerProviderStateMixin {
+    with SingleTickerProviderStateMixin, AuthServices {
   AnimationController? _animationController;
   Animation? _animation;
 
@@ -75,8 +76,10 @@ class _RegistrationScreenState extends State<RegistrationScreen>
             const SizedBox(
               height: 24.0,
             ),
-            const CustomButton(
+            CustomButton(
               isLoginButton: false,
+              onPressed: () async => await register(
+                  email: _email as String, password: _password as String),
             )
           ],
         ),

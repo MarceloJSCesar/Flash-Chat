@@ -1,3 +1,4 @@
+import 'package:flash_chat/services/auth_services.dart';
 import 'package:flash_chat/widgets/custom_button.dart';
 import 'package:flash_chat/widgets/custom_textfield.dart';
 import 'package:flash_chat/widgets/logo_image.dart';
@@ -11,7 +12,7 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen>
-    with SingleTickerProviderStateMixin {
+    with SingleTickerProviderStateMixin, AuthServices {
   AnimationController? _animationController;
   Animation? _animation;
 
@@ -72,7 +73,10 @@ class _LoginScreenState extends State<LoginScreen>
               },
             ),
             const SizedBox(height: 24.0),
-            const CustomButton(),
+            CustomButton(
+              onPressed: () async =>
+                  login(email: _email as String, password: _password as String),
+            ),
           ],
         ),
       ),
