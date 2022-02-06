@@ -4,7 +4,10 @@ import 'package:flash_chat/screens/login_screen.dart';
 import 'package:flash_chat/screens/registration_screen.dart';
 import 'package:flash_chat/screens/chat_screen.dart';
 
-void main() => runApp(const FlashChat());
+void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  runApp(const FlashChat());
+}
 
 class FlashChat extends StatelessWidget {
   const FlashChat({Key? key}) : super(key: key);
