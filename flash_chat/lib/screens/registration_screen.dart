@@ -16,6 +16,9 @@ class _RegistrationScreenState extends State<RegistrationScreen>
   AnimationController? _animationController;
   Animation? _animation;
 
+  String? _email;
+  String? _password;
+
   @override
   void initState() {
     super.initState();
@@ -53,13 +56,21 @@ class _RegistrationScreenState extends State<RegistrationScreen>
             ),
             CustomTextField(
               hint: 'Enter your email',
-              onChanged: () {},
+              onChanged: (value) {
+                setState(() {
+                  _email = value;
+                });
+              },
             ),
             const SizedBox(
               height: 8.0,
             ),
             CustomTextField(
-              onChanged: () {},
+              onChanged: (value) {
+                setState(() {
+                  _password = value;
+                });
+              },
             ),
             const SizedBox(
               height: 24.0,
