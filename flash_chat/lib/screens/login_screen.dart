@@ -4,6 +4,8 @@ import 'package:flash_chat/widgets/custom_textfield.dart';
 import 'package:flash_chat/widgets/logo_image.dart';
 import 'package:flutter/material.dart';
 
+import 'chat_screen.dart';
+
 class LoginScreen extends StatefulWidget {
   static const loginScreenId = 'login_screen';
   const LoginScreen({Key? key}) : super(key: key);
@@ -74,8 +76,16 @@ class _LoginScreenState extends State<LoginScreen>
             ),
             const SizedBox(height: 24.0),
             CustomButton(
-              onPressed: () async =>
-                  login(email: _email as String, password: _password as String),
+              onPressed: () async {
+                await login(
+                        email: _email as String, password: _password as String)
+                    .then((value) {
+                  if (value != null) {
+                    Navigator.of(context)
+                        .pushReplacementNamed(ChatScreen.chatScreenId);
+                  }
+                });
+              },
             ),
           ],
         ),

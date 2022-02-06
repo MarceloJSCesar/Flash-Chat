@@ -1,3 +1,4 @@
+import 'package:flash_chat/screens/chat_screen.dart';
 import 'package:flash_chat/services/auth_services.dart';
 import 'package:flash_chat/widgets/custom_button.dart';
 import 'package:flash_chat/widgets/logo_image.dart';
@@ -78,8 +79,16 @@ class _RegistrationScreenState extends State<RegistrationScreen>
             ),
             CustomButton(
               isLoginButton: false,
-              onPressed: () async => await register(
-                  email: _email as String, password: _password as String),
+              onPressed: () async {
+                await register(
+                        email: _email as String, password: _password as String)
+                    .then((value) {
+                  if (value != null) {
+                    Navigator.of(context)
+                        .pushReplacementNamed(ChatScreen.chatScreenId);
+                  }
+                });
+              },
             )
           ],
         ),
