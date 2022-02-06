@@ -52,7 +52,7 @@ class _LoginScreenState extends State<LoginScreen>
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            LogoImage(height: _animation!.value * 200),
+            LogoImage(height: _animationController!.value * 200),
             const SizedBox(
               height: 48.0,
             ),
@@ -78,8 +78,9 @@ class _LoginScreenState extends State<LoginScreen>
             CustomButton(
               onPressed: () async {
                 await login(
-                        email: _email as String, password: _password as String)
-                    .then((value) {
+                  email: _email as String,
+                  password: _password as String,
+                ).then((value) {
                   if (value != null) {
                     Navigator.of(context)
                         .pushReplacementNamed(ChatScreen.chatScreenId);

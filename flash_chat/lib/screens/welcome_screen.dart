@@ -1,4 +1,5 @@
 import 'package:flash_chat/config/app_textstyles.dart';
+import 'package:flash_chat/screens/registration_screen.dart';
 import 'package:flash_chat/widgets/animate_title.dart';
 import 'package:flash_chat/widgets/custom_button.dart';
 import 'package:flash_chat/widgets/logo_image.dart';
@@ -60,7 +61,11 @@ class _WelcomeScreenState extends State<WelcomeScreen>
               onPressed: () => Navigator.of(context)
                   .pushReplacementNamed(LoginScreen.loginScreenId),
             ),
-            CustomButton(isLoginButton: false, onPressed: () {}),
+            CustomButton(
+              isLoginButton: false,
+              onPressed: () => Navigator.of(context).pushReplacementNamed(
+                  RegistrationScreen.registrationScreenId),
+            ),
           ],
         ),
       ),

@@ -52,7 +52,7 @@ class _RegistrationScreenState extends State<RegistrationScreen>
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            LogoImage(height: _animation!.value * 200),
+            LogoImage(height: _animationController!.value * 200),
             const SizedBox(
               height: 48.0,
             ),
