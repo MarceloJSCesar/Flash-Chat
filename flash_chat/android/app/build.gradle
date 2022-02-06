@@ -47,6 +47,7 @@ android {
         applicationId "com.example.flash_chat"
         minSdkVersion flutter.minSdkVersion
         targetSdkVersion flutter.targetSdkVersion
+        multiDexEnabled true
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
     }
