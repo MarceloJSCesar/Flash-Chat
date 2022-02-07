@@ -13,6 +13,10 @@ class CustomTextField extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextField(
       onChanged: (value) => onChanged,
+      style: const TextStyle(
+        fontSize: 16,
+        color: Colors.black,
+      ),
       decoration: InputDecoration(
         hintText: hint ?? 'Enter your password.',
         contentPadding:
