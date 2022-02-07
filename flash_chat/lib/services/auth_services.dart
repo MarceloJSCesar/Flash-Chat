@@ -1,6 +1,7 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flash_chat/models/person.dart';
+import 'package:flash_chat/screens/welcome_screen.dart';
+import 'package:flutter/material.dart';
 
 class AuthServices {
   final _auth = FirebaseAuth.instance;
@@ -39,6 +40,16 @@ class AuthServices {
       // ignore: avoid_print
       print('errorRegisterMsg: $errorMsg');
       return null;
+    }
+  }
+
+  Future logout({required BuildContext context}) async {
+    try {
+      await _auth.signOut();
+      Navigator.of(context).pushReplacementNamed(WelcomeScreen.welcomeScreenId);
+    } catch (errorMsg) {
+      // ignore: avoid_print
+      print('errorLogoutMsg: $errorMsg');
     }
   }
 }
