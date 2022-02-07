@@ -12,6 +12,12 @@ class CustomTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextField(
+      obscureText: hint == null ? true : false,
+      textInputAction:
+          hint == null ? TextInputAction.done : TextInputAction.next,
+      keyboardType: hint == null
+          ? TextInputType.visiblePassword
+          : TextInputType.emailAddress,
       onChanged: (value) => onChanged(value),
       style: const TextStyle(
         fontSize: 16,
