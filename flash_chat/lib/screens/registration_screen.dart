@@ -3,6 +3,7 @@ import 'package:flash_chat/services/auth_services.dart';
 import 'package:flash_chat/widgets/custom_button.dart';
 import 'package:flash_chat/widgets/logo_image.dart';
 import 'package:flutter/material.dart';
+import 'package:modal_progress_hud/modal_progress_hud.dart';
 
 import '../widgets/custom_textfield.dart';
 
@@ -20,6 +21,8 @@ class _RegistrationScreenState extends State<RegistrationScreen>
 
   String? _email;
   String? _password;
+
+  bool isLoading = false;
 
   @override
   void initState() {
@@ -46,53 +49,63 @@ class _RegistrationScreenState extends State<RegistrationScreen>
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: _animation?.value,
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 24.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: <Widget>[
-            LogoImage(height: _animationController!.value * 200),
-            const SizedBox(
-              height: 48.0,
+      body: isLoading
+          ? ModalProgressHUD(
+              inAsyncCall: isLoading, child: const Text('Loading ...'))
+          : Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 24.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: <Widget>[
+                  LogoImage(height: _animationController!.value * 200),
+                  const SizedBox(
+                    height: 48.0,
+                  ),
+                  CustomTextField(
+                    hint: 'Enter your email',
+                    onChanged: (value) {
+                      setState(() {
+                        _email = value;
+                      });
+                    },
+                  ),
+                  const SizedBox(
+                    height: 8.0,
+                  ),
+                  CustomTextField(
+                    onChanged: (value) {
+                      setState(() {
+                        _password = value;
+                      });
+                    },
+                  ),
+                  const SizedBox(
+                    height: 24.0,
+                  ),
+                  CustomButton(
+                    isLoginButton: false,
+                    onPressed: () async {
+                      setState(() {
+                        isLoading = true;
+                      });
+                      await register(
+                              email: _email as String,
+                              password: _password as String)
+                          .then((value) {
+                        setState(() {
+                          isLoading = false;
+                        });
+                        if (value != null) {
+                          Navigator.of(context)
+                              .pushReplacementNamed(ChatScreen.chatScreenId);
+                        }
+                      });
+                    },
+                  )
+                ],
+              ),
             ),
-            CustomTextField(
-              hint: 'Enter your email',
-              onChanged: (value) {
-                setState(() {
-                  _email = value;
-                });
-              },
-            ),
-            const SizedBox(
-              height: 8.0,
-            ),
-            CustomTextField(
-              onChanged: (value) {
-                setState(() {
-                  _password = value;
-                });
-              },
-            ),
-            const SizedBox(
-              height: 24.0,
-            ),
-            CustomButton(
-              isLoginButton: false,
-              onPressed: () async {
-                await register(
-                        email: _email as String, password: _password as String)
-                    .then((value) {
-                  if (value != null) {
-                    Navigator.of(context)
-                        .pushReplacementNamed(ChatScreen.chatScreenId);
-                  }
-                });
-              },
-            )
-          ],
-        ),
-      ),
     );
   }
 }
