@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flash_chat/services/auth_services.dart';
+import 'package:flash_chat/services/chat_services.dart';
 import 'package:flutter/material.dart';
 import 'package:flash_chat/constants.dart';
 
@@ -10,15 +11,15 @@ class ChatScreen extends StatefulWidget {
   _ChatScreenState createState() => _ChatScreenState();
 }
 
-class _ChatScreenState extends State<ChatScreen> with AuthServices {
+class _ChatScreenState extends State<ChatScreen>
+    with AuthServices, ChatServices {
   User? user;
+  String? message;
   final _auth = FirebaseAuth.instance;
   @override
   void initState() {
     super.initState();
     user = _auth.currentUser;
-    // ignore: avoid_print
-    print('user: ${user!.email}');
   }
 
   @override
@@ -48,15 +49,14 @@ class _ChatScreenState extends State<ChatScreen> with AuthServices {
                   Expanded(
                     child: TextField(
                       onChanged: (value) {
-                        //Do something with the user input.
+                        message = value;
                       },
                       decoration: kMessageTextFieldDecoration,
                     ),
                   ),
                   TextButton(
-                    onPressed: () {
-                      //Implement send functionality.
-                    },
+                    onPressed: () async => await sendMsg(
+                        msg: message as String, user: user as User),
                     child: const Text(
                       'Send',
                       style: kSendButtonTextStyle,
