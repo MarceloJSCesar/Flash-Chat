@@ -15,16 +15,17 @@ class MessageBuble extends StatelessWidget with AppTextStyles {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+      margin: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
       alignment: isSender ? Alignment.centerRight : Alignment.centerLeft,
       child: Column(
         crossAxisAlignment:
-            isSender ? CrossAxisAlignment.end : CrossAxisAlignment.center,
+            isSender ? CrossAxisAlignment.end : CrossAxisAlignment.start,
         children: <Widget>[
           Text(
             email,
             style: AppTextStyles.messageTitleTextStyle,
           ),
+          const SizedBox(height: 4),
           Container(
             padding: const EdgeInsets.all(8),
             //alignment: isSender ? Alignment.bottomRight : Alignment.bottomLeft,
