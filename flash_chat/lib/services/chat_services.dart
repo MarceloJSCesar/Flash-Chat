@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 
 class ChatServices {
   final _firestore = FirebaseFirestore.instance;
@@ -9,10 +10,5 @@ class ChatServices {
       'sender': user.email,
       'createdAt': Timestamp.now(),
     });
-  }
-
-  Future fetchMsg() async {
-    var messages = await _firestore.collection('messages').get();
-    return messages.docs;
   }
 }

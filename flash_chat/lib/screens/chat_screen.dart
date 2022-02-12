@@ -23,8 +23,6 @@ class _ChatScreenState extends State<ChatScreen>
   void initState() {
     super.initState();
     user = _auth.currentUser;
-    fetchMsg();
-    print('hu');
   }
 
   @override
