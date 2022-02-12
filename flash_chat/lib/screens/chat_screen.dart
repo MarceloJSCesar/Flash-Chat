@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flash_chat/services/auth_services.dart';
 import 'package:flash_chat/services/chat_services.dart';
+import 'package:flash_chat/widgets/message_buble.dart';
 import 'package:flutter/material.dart';
 import 'package:flash_chat/constants.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
@@ -19,6 +20,7 @@ class _ChatScreenState extends State<ChatScreen>
   String? message;
   final _auth = FirebaseAuth.instance;
   final _firestore = FirebaseFirestore.instance;
+  final _msgController = TextEditingController();
   @override
   void initState() {
     super.initState();
@@ -68,7 +70,11 @@ class _ChatScreenState extends State<ChatScreen>
                           reverse: true,
                           itemCount: data.length,
                           itemBuilder: (context, index) {
-                            return Text(data[index]['text']);
+                            return MessageBuble(
+                              msg: data[index]['text'] as String,
+                              email: data[index]['sender'],
+                              isSender: data[index]['sender'] == user?.email,
+                            );
                           },
                         ),
                       );
@@ -86,6 +92,7 @@ class _ChatScreenState extends State<ChatScreen>
               children: <Widget>[
                 Expanded(
                   child: TextField(
+                    controller: _msgController,
                     onChanged: (value) {
                       message = value;
                     },
@@ -93,8 +100,10 @@ class _ChatScreenState extends State<ChatScreen>
                   ),
                 ),
                 TextButton(
-                  onPressed: () async =>
-                      await sendMsg(msg: message as String, user: user as User),
+                  onPressed: () async {
+                    _msgController.clear();
+                    await sendMsg(msg: message as String, user: user as User);
+                  },
                   child: const Text(
                     'Send',
                     style: kSendButtonTextStyle,

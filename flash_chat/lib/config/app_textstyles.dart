@@ -6,4 +6,14 @@ mixin AppTextStyles {
     color: Colors.black,
     fontWeight: FontWeight.w900,
   );
+  static const TextStyle messageTextStyle = TextStyle(
+    fontSize: 16,
+    color: Colors.black,
+    fontWeight: FontWeight.w400,
+  );
+  static const TextStyle messageTitleTextStyle = TextStyle(
+    fontSize: 16,
+    color: Colors.black,
+    fontWeight: FontWeight.w900,
+  );
 }
