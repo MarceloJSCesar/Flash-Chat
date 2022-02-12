@@ -10,4 +10,9 @@ class ChatServices {
       'createdAt': Timestamp.now(),
     });
   }
+
+  Future fetchMsg() async {
+    var messages = await _firestore.collection('messages').get();
+    return messages.docs;
+  }
 }
